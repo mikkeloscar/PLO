@@ -1,4 +1,4 @@
 PLO
 ===
 
-PLO Client
+PLO Java Client
