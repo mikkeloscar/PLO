@@ -1,4 +1,4 @@
-package fnuxparser;
+package src.fnuxparser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
  * 
  * @author Mikkel Oscar Larsen
  * @author Aske Mottelson Clausen
- * @version 1 - 2011
+ * @version 1.0 - 2011
  */
 public class FNUXParser {
 	
