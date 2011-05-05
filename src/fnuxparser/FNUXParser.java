@@ -10,7 +10,8 @@ import java.io.FileNotFoundException;
  * @author Aske Mottelson Clausen
  * @version 1 - 2011
  */
-public class FNUXParser {
+public class FNUXParser
+{
 	
 	private File file;
 	private Boolean hasParsed;
@@ -20,13 +21,13 @@ public class FNUXParser {
 	 * 
 	 * @param file
 	 */
-	public FNUXParser(File file) throws FileNotFoundException
+	public FNUXParser(File file) throws ParserException
 	{
 		this.file = file;
 		hasParsed = false;
 		
 		if (!file.isFile())
-            throw new FileNotFoundException("The specified file does not exist.");
+            throw new ParserException("The specified file does not exist.");
 	}
 	
 	/**
@@ -35,7 +36,7 @@ public class FNUXParser {
 	 * @throws FileNotFoundException If the specified path is not a file 
 	 * @param fileName path to the file as string
 	 */
-	public FNUXParser(String fileName) throws FileNotFoundException
+	public FNUXParser(String fileName) throws ParserException
 	{
 		this(new File(fileName));
 	}
@@ -43,7 +44,8 @@ public class FNUXParser {
 	/**
 	 * Parses the file
 	 */
-	public void parseFnux() {
+	public void parseFnux()
+	{
 		
 	}
 	
@@ -52,7 +54,8 @@ public class FNUXParser {
 	 * 
 	 * @return
 	 */
-	public String makeFnux() {
+	public String makeFnux()
+	{
 		return "fnux-output";
 	}
 }
