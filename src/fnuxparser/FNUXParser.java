@@ -1,4 +1,4 @@
-package src.fnuxparser;
+package fnuxparser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
