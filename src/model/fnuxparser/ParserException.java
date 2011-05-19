@@ -1,4 +1,4 @@
-package fnuxparser;
+package model.fnuxparser;
 
 /**
  * ParserException
