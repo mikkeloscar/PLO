@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import model.sql.config.SQLConfigException;
+import model.sql.config.SqlConfig;
+
 /**
  * Sql class
  * 
@@ -61,8 +64,31 @@ public class MySql implements ISql {
 	/**
 	 * Connect using properties file
 	 */
-	public void connect() {
-		SqlConfig config = new SqlConfig("config.properties");
+	public void connect() {	
+		
+		try {
+			SqlConfig config = new SqlConfig("settings/config.properties");
+			
+			Class.forName(driver);
+			
+			String server = protocol + config.toString();  
+		
+			connect = DriverManager.getConnection(server);
+		}
+		
+		catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		catch (SQLConfigException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
