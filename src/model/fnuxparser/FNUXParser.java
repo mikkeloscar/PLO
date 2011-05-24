@@ -2,6 +2,7 @@ package model.fnuxparser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import model.Journal;
 
 /**
  * FNUXParser
@@ -28,6 +29,11 @@ public class FNUXParser
 		
 		if (!file.isFile())
             throw new ParserException("The specified file does not exist.");
+		
+		if(!hasParsed)
+		{
+			this.parseFnux();
+		}
 	}
 	
 	/**
@@ -44,9 +50,9 @@ public class FNUXParser
 	/**
 	 * Parses the file
 	 */
-	public void parseFnux()
+	public Journal parseFnux()
 	{
-		
+		return new Journal(0101010101);
 	}
 	
 	/**
