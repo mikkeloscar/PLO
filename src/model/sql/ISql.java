@@ -1,5 +1,6 @@
 package model.sql;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +31,6 @@ public interface ISql {
 	/**
 	 * custom query
 	 */
-	public void query();
+	public ResultSet query(String query);
 
 }

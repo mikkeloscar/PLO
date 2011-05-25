@@ -129,8 +129,25 @@ public class MySql implements ISql {
 	/**
 	 * custom query
 	 */
-	public void query() {
+	public ResultSet query(String query) {
+		try {
+			this.connect();
+			
+			statement = connect.createStatement();
+			// Result set get the result of the SQL query
+			resultSet = statement.executeQuery(query);			
+		}
+		catch(SQLConnectionException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			close();
+		}
 		
+		return resultSet;
 	}
 	
 	/**
