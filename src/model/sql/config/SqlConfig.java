@@ -53,6 +53,42 @@ public class SqlConfig {
 			   this.user + "&password=" + 
 			   this.pwd;
 	}
+
+	/**
+	 * get host
+	 * 
+	 * @return host string
+	 */
+	public String getHost() {
+		return this.host;
+	}
+
+	/**
+	 * get db
+	 * 
+	 * @return db string
+	 */
+	public String getDb() {
+		return this.db;
+	}
+
+	/**
+	 * get user
+	 * 
+	 * @return user string
+	 */
+	public String getUser() {
+		return this.user;
+	}
+
+	/**
+	 * get pwd
+	 * 
+	 * @return pwd string
+	 */
+	public String getPwd() {
+		return this.pwd;
+	}
 	
 	/**
 	 * get prefix

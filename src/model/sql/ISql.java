@@ -6,22 +6,11 @@ import java.util.ArrayList;
  *  SQL Interface
  */
 public interface ISql {
-	
+		
 	/**
-	 * Connect using params
-	 * 
-	 * @param host, the SQL host
-	 * @param db, the database
-	 * @param user, the SQL user
-	 * @param pwd, the SQL password
-	 * @param prefix, the prefix used for the SQL tables
+	 * Connect to database
 	 */
-	public void connect(String host, String db, String user, String pwd, String prefix);
-	
-	/**
-	 * Connect using properties files
-	 */
-	public void connect();
+	public void connect() throws SQLConnectionException;
 	
 	/**
 	 * close connection
@@ -31,12 +20,12 @@ public interface ISql {
 	/**
 	 * Insert data to the database
 	 */
-	public void insert();
+	public void insert(String table, ArrayList<String> values);
 	
 	/**
 	 * Get data from the database
 	 */
-	public ArrayList<String> select();
+	public ArrayList<String> select(String table);
 	
 	/**
 	 * custom query

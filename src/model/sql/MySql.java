@@ -27,83 +27,98 @@ public class MySql implements ISql {
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 	
+	private String host;
+	private String db;
+	private String user;
+	private String pwd;
+	private String prefix = "";
+	
+	
 	private final static String driver = "com.mysql.jdbc.Driver";
 	private final static String protocol = "jdbc:mysql://";
 	
 	/**
-	 * Connect
+	 * Construct mysql object to talk to the database
 	 * 
 	 * @param host, the SQL host
 	 * @param db, the database
 	 * @param user, the SQL user
 	 * @param pwd, the SQL password
-	 * @param prefix, the prefix used for the SQL tables	 * 
+	 * @param prefix, the prefix used for the SQL tables
 	 */
-	public void connect(String host, String db, String user, String pwd, String prefix) {
-		
-		try {
-			Class.forName(driver);
-			
-			String server = protocol + host + "/" + db + "?user=" + user + "&password=" + pwd;  
-		
-			connect = DriverManager.getConnection(server);
-		}
-		
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	public MySql(String host, String db, String user, String pwd, String prefix) {
+		this.host = host;
+		this.db = db;
+		this.user = user;
+		this.pwd = pwd;
+		this.prefix = prefix;
+	}
+	
+	public MySql() throws SQLConfigException
+	{
+		SqlConfig config = new SqlConfig("settings/config.properties");
+						
+		this.host = config.getHost();
+		this.db = config.getDb();
+		this.user = config.getUser();
+		this.pwd = config.getPwd();
+		this.prefix = config.getPrefix();
 	}
 	
 	/**
-	 * Connect using properties file
+	 * Connect
 	 */
-	public void connect() {	
+	public void connect() throws SQLConnectionException
+	{
 		
 		try {
-			SqlConfig config = new SqlConfig("settings/config.properties");
-			
 			Class.forName(driver);
 			
-			String server = protocol + config.toString();  
+			String server = protocol + 
+							this.host + "/" + 
+							this.db + "?user=" + 
+							this.user + "&password=" + 
+							this.pwd;  
 		
-			connect = DriverManager.getConnection(server);
+			this.connect = DriverManager.getConnection(server);
 		}
 		
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		catch (Exception e) {
+			throw new SQLConnectionException(e.getMessage());
+		}
 		
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		catch (SQLConfigException e) {
-			e.printStackTrace();
-		}
 	}
 	
+		
 	/**
 	 * Insert data to the database
 	 * 
 	 * @param
 	 */
-	public void insert() {
-		
+	public void insert(String table, ArrayList<String> values) {
+		try {
+			this.connect();
+			
+			preparedStatement = connect.prepareStatement("insert into " + 
+														 prefix + 
+														 table + 
+														 "values ()");
+		}
+		catch(SQLConnectionException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			close();
+		}
 	}
 	
 	/**
 	 * Get data from the database
 	 */
-	public ArrayList<String> select() {
+	public ArrayList<String> select(String table) {
 		ArrayList<String> test = new ArrayList<String>();
 		
 		test.add("Something");
@@ -122,7 +137,21 @@ public class MySql implements ISql {
 	 * 
 	 */
 	public void close() {
-		
+		try {
+			if (resultSet != null) {
+				resultSet.close();
+			}
+
+			if (statement != null) {
+				statement.close();
+			}
+
+			if (connect != null) {
+				connect.close();
+			}
+		} catch (Exception e) {
+
+		}
 	}
 
 }
