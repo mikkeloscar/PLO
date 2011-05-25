@@ -22,16 +22,16 @@ import model.sql.config.SqlConfig;
  */
 public class MySql implements ISql {
 	
-	private Connection connect = null;
-	private Statement statement = null;
-	private PreparedStatement preparedStatement = null;
-	private ResultSet resultSet = null;
+	protected Connection connect = null;
+	protected Statement statement = null;
+	protected PreparedStatement preparedStatement = null;
+	protected ResultSet resultSet = null;
 	
 	private String host;
 	private String db;
 	private String user;
 	private String pwd;
-	private String prefix = "";
+	protected String prefix = "";
 	
 	
 	private final static String driver = "com.mysql.jdbc.Driver";
@@ -129,8 +129,25 @@ public class MySql implements ISql {
 	/**
 	 * custom query
 	 */
-	public void query() {
+	public ResultSet query(String query) {
+		try {
+			this.connect();
+			
+			statement = connect.createStatement();
+			// Result set get the result of the SQL query
+			resultSet = statement.executeQuery(query);			
+		}
+		catch(SQLConnectionException e) {
+			System.out.println(e.getMessage());
+		}
+		catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			close();
+		}
 		
+		return resultSet;
 	}
 	
 	/**
