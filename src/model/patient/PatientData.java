@@ -1,6 +1,7 @@
 package model.patient;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import model.sql.MySql;
 import model.sql.config.SQLConfigException;
@@ -15,16 +16,21 @@ import model.sql.config.SQLConfigException;
  *
  */
 public class PatientData extends MySql {
+	
+	//private HashMap<String,String> data;
 
 	public PatientData() throws SQLConfigException {
 		super();
 	}
 	
-	public void basicInfo(String cpr) {
+	public HashMap<String,String> basicInfo(String cpr) {
+		
+		HashMap<String, String> row = new HashMap<String, String>();
+		
 		try {
 			super.connect();
 			
-			String query = "SELECT cpr, fornavn, efternavn, adresse, postnr, bynavn, tlf, email FROM " + 
+			String query = "SELECT cpr, fornavn, efternavn, adresse, p.postnr, bynavn, tlf, email FROM " + 
 						   prefix + "patient p, bynavn b WHERE cpr=? AND p.postnr=b.postnr";
 			
 			//System.out.println(query);
@@ -32,12 +38,24 @@ public class PatientData extends MySql {
 			preparedStatement = connect.prepareStatement(query);
 			
 			preparedStatement.setString(1, cpr);
-			preparedStatement.executeUpdate();
+			//preparedStatement.executeUpdate();
 			resultSet = preparedStatement.executeQuery();
 			
-			while (resultSet.next()) {
+			//while (
+				resultSet.next();//) {
+				row = new HashMap<String, String>();
+				
+				row.put("cpr", resultSet.getString("cpr"));
+				row.put("fornavn", resultSet.getString("fornavn"));
+				row.put("efternavn", resultSet.getString("efternavn"));
+				row.put("adresse", resultSet.getString("adresse"));
+				row.put("postnr", resultSet.getString("postnr"));
+				row.put("bynavn", resultSet.getString("bynavn"));
+				row.put("tlf", resultSet.getString("tlf"));
+				row.put("email", resultSet.getString("email"));
+				
 				//String cpr = resultSet.getString("cpr");
-				String fornavn = resultSet.getString("fornavn");
+				/*String fornavn = resultSet.getString("fornavn");
 				String efternavn = resultSet.getString("efternavn");
 				String adresse = resultSet.getString("adresse");
 				int postnr = resultSet.getInt("postnr");
@@ -50,8 +68,8 @@ public class PatientData extends MySql {
 				System.out.println("Fornavn: " + fornavn);
 				System.out.println("adresse: " + adresse + "\n" + postnr + ", " + by);
 				System.out.println("Tlf.: " + tlf);
-				System.out.println("Email: " + email);
-			}
+				System.out.println("Email: " + email);*/
+			//}		
 			
 		}
 		catch(Exception e) {
@@ -59,7 +77,8 @@ public class PatientData extends MySql {
 			System.out.println(e.getMessage());
 		}
 		
-		
+		return row;
+				
 	}
 	
 }

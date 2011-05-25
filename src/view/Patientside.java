@@ -1,15 +1,27 @@
 package view;
 
-import javax.swing.*;
+
+import controller.PatientSideController;
 
 import model.patient.PatientData;
 import model.sql.config.SQLConfigException;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 
-public class Patientside extends JFrame {
+public class Patientside extends MainGUI {
+	
+	private PatientSideController control;
 
 	public Patientside(String cpr){
 		super("Patientside" + " - " + cpr);
@@ -19,20 +31,37 @@ public class Patientside extends JFrame {
 		JMenuItem opret = new JMenuItem("Opret ny patient");
 		filer.add(opret);
 		JMenuItem aabn = new JMenuItem("Åbn ny patient");
+		aabn.setActionCommand("open");
+		aabn.addActionListener(control);
 		//test
-		aabn.addActionListener(new ActionListener(){  
-			 public void actionPerformed(ActionEvent e){  
+		aabn.addActionListener(new ActionListener(){
+			 public void actionPerformed(ActionEvent e) {
 				 try {
-					PatientData data = new PatientData();
+					 PatientData data = new PatientData();
 					
-					System.out.println("test");
+					 //System.out.println("test");
 					
-					data.basicInfo("0101901149");
+					 HashMap<String, String> map = data.basicInfo("0101901149");
 					
-				} catch (SQLConfigException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}  
+					 Set set = map.entrySet();
+					 // Get an iterator 
+					 Iterator i = set.iterator(); 
+					 // Display elements
+					
+					 String info = "";
+					 while(i.hasNext()) { 
+						 Map.Entry me = (Map.Entry)i.next(); 
+						 /*System.out.print(me.getKey() + ": "); 
+						 System.out.println(me.getValue());*/
+						 info = info + me.getKey() + ": " + me.getValue() + "\n";
+					 }
+					
+					 patientInfo(info);
+					
+				 } catch (SQLConfigException e1) {
+					 // TODO Auto-generated catch block
+					 e1.printStackTrace();
+				 }  
 			 }  
 		});
 		
@@ -98,10 +127,19 @@ public class Patientside extends JFrame {
 		
 		
 		this.setSize(1000, 600);
-		this.setLocationRelativeTo(null); 
+		this.setLocationRelativeTo(null);
 		
 	}
 	
-	
+	public void patientInfo(String info) {
+		JPanel patientInfo = new JPanel();
+		
+		JLabel label = new JLabel(info);
+		
+		patientInfo.add(label);
+		
+		this.add(patientInfo);
+		
+		this.validate();
+	}	
 }
-
