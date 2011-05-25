@@ -14,13 +14,11 @@ public class Application
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }
-        catch (Exception _) { } // Just ignore this.
+        catch (Exception _) { } // Silent exception handling
         
-		MainGUI mainframe = new MainGUI("PLO Patientside");
-		Patientside patient = new Patientside("0101901149");
-        
-        patient.setVisible(true);
-		
+		Loginside login = new Loginside();
+        login.setVisible(true);
+
         
 	}
 }
