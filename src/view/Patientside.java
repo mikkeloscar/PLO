@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class Patientside extends JFrame{
+public class Patientside extends MainGUI{
 
 	public Patientside(String cpr){
-		super("Patientside" + " - " + cpr);
+		super("Patientside" + " - " + cpr, 1000, 600);
 		
 		JMenu filer = new JMenu("Filer");
 		
@@ -35,8 +35,6 @@ public class Patientside extends JFrame{
 		rediger.add(cut);
 		JMenuItem paste = new JMenuItem("Sæt ind");
 		rediger.add(paste);
-		JMenuItem udskriv = new JMenuItem("Udskriv journal");
-		rediger.add(udskriv);
 		
 		JMenu journal = new JMenu("Journal");
 		JMenuItem konsultation = new JMenuItem("Registrér konsultation");
@@ -52,6 +50,8 @@ public class Patientside extends JFrame{
 		journal.add(privi);
 		JMenuItem importer = new JMenuItem("Importér FNUX-journal");
 		journal.add(importer);
+		JMenuItem udskriv = new JMenuItem("Udskriv journal");
+		journal.add(udskriv);
 		
 		JMenu patient = new JMenu("Patient");
 		JMenuItem oplysning = new JMenuItem("Ændre stamoplysninger");
