@@ -12,9 +12,8 @@ import javax.swing.JOptionPane;
 public class MainGUI extends JFrame{
 
 	public MainGUI(String title){
-		
 		this.setTitle(title);
-		this.pack();	
+		this.pack();
 		
 	}
 	
@@ -22,6 +21,5 @@ public class MainGUI extends JFrame{
 		JOptionPane pane = new JOptionPane();
 		pane.showMessageDialog(this, alert, title, JOptionPane.PLAIN_MESSAGE);
 	}
-	
 	
 }
