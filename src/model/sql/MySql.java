@@ -56,7 +56,7 @@ public class MySql implements ISql {
 	
 	public MySql() throws SQLConfigException
 	{
-		SqlConfig config = new SqlConfig("settings/config.properties");
+		SqlConfig config = new SqlConfig("settings/sqlconfig.properties");
 						
 		this.host = config.getHost();
 		this.db = config.getDb();
@@ -81,6 +81,11 @@ public class MySql implements ISql {
 							this.pwd;  
 		
 			this.connect = DriverManager.getConnection(server);
+		}
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+			
 		}
 		
 		catch (Exception e) {

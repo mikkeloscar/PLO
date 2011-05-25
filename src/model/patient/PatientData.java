@@ -25,7 +25,9 @@ public class PatientData extends MySql {
 			super.connect();
 			
 			String query = "SELECT cpr, fornavn, efternavn, adresse, postnr, bynavn, tlf, email FROM " + 
-						   prefix + "patient p, bynavn b WHERE cpr=? AND p.postnr=b.postnr;";
+						   prefix + "patient p, bynavn b WHERE cpr=? AND p.postnr=b.postnr";
+			
+			//System.out.println(query);
 			
 			preparedStatement = connect.prepareStatement(query);
 			

@@ -1,11 +1,15 @@
 package view;
 
 import javax.swing.*;
+
+import model.patient.PatientData;
+import model.sql.config.SQLConfigException;
+
 import java.awt.*;
 import java.awt.event.*;
 
 
-public class Patientside extends JFrame{
+public class Patientside extends JFrame {
 
 	public Patientside(String cpr){
 		super("Patientside" + " - " + cpr);
@@ -15,6 +19,25 @@ public class Patientside extends JFrame{
 		JMenuItem opret = new JMenuItem("Opret ny patient");
 		filer.add(opret);
 		JMenuItem aabn = new JMenuItem("Åbn ny patient");
+		//test
+		aabn.addActionListener(new ActionListener(){  
+			 public void actionPerformed(ActionEvent e){  
+				 try {
+					PatientData data = new PatientData();
+					
+					System.out.println("test");
+					
+					data.basicInfo("0101901149");
+					
+				} catch (SQLConfigException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}  
+			 }  
+		});
+		
+		
+		
 		filer.add(aabn);	
 		JMenuItem gem = new JMenuItem("Gem");
 		filer.add(gem);
