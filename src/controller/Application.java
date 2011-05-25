@@ -8,7 +8,7 @@ public class Application
 	
 	public static void main(String [ ] args)
 	{
-		MainGUI mainframe = new MainGUI("PLO Patientside");
+	
 		//Use system specific GUI
 		try
         {
@@ -16,9 +16,11 @@ public class Application
         }
         catch (Exception _) { } // Just ignore this.
         
-        mainframe.setLocationRelativeTo(null);
-        mainframe.setVisible(true);
+		MainGUI mainframe = new MainGUI("PLO Patientside");
+		Patientside patient = new Patientside("0101901149");
         
-        mainframe.alert("Patient oprettet.", "Godkendt");
+        patient.setVisible(true);
+		
+        
 	}
 }
