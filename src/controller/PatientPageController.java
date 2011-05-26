@@ -10,6 +10,15 @@ import model.sql.config.SQLConfigException;
 import view.PatientPage;
 import view.SearchDialog;
 
+/**
+ * Patient Controller
+ * 
+ * @author Mikkel Oscar Lyderik
+ * @author Aske Mottelson Clausen
+ * 
+ * @version 1, 2011
+ *
+ */
 public class PatientPageController implements ActionListener {
 	
 	private Patient patient;
@@ -32,10 +41,7 @@ public class PatientPageController implements ActionListener {
         	SearchDialog searchDialog = new SearchDialog(frame, true);
         	if (!searchDialog.canceled())
         	{
-        		//Patient patient;
-        		//patient = new Patient(searchDialog.getCpr());
-				patient.getDataHash();
- 		
+				patient.getDataHash(); 		
         	}
         }        
     }

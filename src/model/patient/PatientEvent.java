@@ -13,9 +13,8 @@ import java.util.HashMap;
  *
  */
 public class PatientEvent {
+	
     public static final int 		EVENT_PATIENT_INFO   = 1;
-    //public static final int 		EVENT_REMOVED = 2;
-    //public static final int 		EVENT_CLEARED = 3;
     private int             		event;
     private HashMap<String, String> data;
         

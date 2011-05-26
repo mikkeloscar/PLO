@@ -23,6 +23,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+/**
+ * Patient Page
+ * 
+ * @author Mikkel Oscar Lyderik
+ * @author Aske Mottelson Clausen
+ * 
+ * @version 1, 2011
+ *
+ */
 public class PatientPage extends MainGUI implements Observer
 {
 	
