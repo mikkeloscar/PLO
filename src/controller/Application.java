@@ -3,6 +3,9 @@ package controller;
 import view.*;
 import javax.swing.UIManager;
 
+import model.patient.Patient;
+import model.sql.config.SQLConfigException;
+
 public class Application
 {
 	
@@ -16,9 +19,17 @@ public class Application
         }
         catch (Exception _) { } // Silent exception handling
         
-		Loginside login = new Loginside();
-        login.setVisible(true);
-
+		/*Loginside login = new Loginside();
+        login.setVisible(true);*/
         
+        PatientPage patient;
+		try {
+			patient = new PatientPage(new Patient("0101901149"));
+			
+			patient.setVisible(true);
+		} catch (SQLConfigException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}        
 	}
 }

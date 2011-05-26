@@ -8,11 +8,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class SearchDialog extends JDialog implements ActionListener {
-{
 	
 	private JTextField cprField;
     private boolean done;
@@ -47,10 +48,10 @@ public class SearchDialog extends JDialog implements ActionListener {
         this.setVisible(true);
     }
     
-    public Character getCpr()
+    public String getCpr()
     {
         if (!canceled())
-            return cprField.getText().charAt(0);
+            return cprField.getText();
         return null;
     }
     
@@ -65,20 +66,14 @@ public class SearchDialog extends JDialog implements ActionListener {
         
         if (command.equals("ok"))
         {
-            if (cprField.getText().length() != 1)
-                JOptionPane.showMessageDialog(this, "Type must be a single character");
+            if (cprField.getText().length() != 10)
+                JOptionPane.showMessageDialog(this, "Indtast et gyldigt, CPR nr.");
             else
             {
-                try
-                {
-                    Integer.parseInt(valField.getText());
-                    done = true;
-                    this.dispose();
-                }
-                catch (NumberFormatException ex)
-                {
-                    JOptionPane.showMessageDialog(this, "Value must be an integer");
-                }
+                
+                done = true;
+                this.dispose();
+                
             }
         }
         else if (command.equals("cancel"))
