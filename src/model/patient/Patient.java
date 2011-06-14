@@ -119,10 +119,8 @@ public class Patient extends Observable {
 		dataHash.put("Postnr.", this.zip);
 		dataHash.put("By", this.city);
 		dataHash.put("Tlf.", this.phone);
-		dataHash.put("Email", this.email);
-		
-		System.out.println("test-patient");
-		
+		dataHash.put("Email", this.email);		
+	
 		setChanged();
         	notifyObservers(new PatientEvent(PatientEvent.EVENT_PATIENT_INFO, dataHash));
 	}
