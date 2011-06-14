@@ -138,13 +138,12 @@ public class PatientPage extends MainGUI implements Observer
 	}
 	
 	public void update(Observable sender, Object arg)
-    {
-        if (arg instanceof PatientEvent)
-        {
-            PatientEvent e = (PatientEvent)arg;
-            if (e.getEvent() == PatientEvent.EVENT_PATIENT_INFO) {
-            	System.out.println("test-patientpage");
-            	patientInfo(e.getData());
+	{
+		if (arg instanceof PatientEvent)
+		{
+			PatientEvent e = (PatientEvent)arg;
+			if (e.getEvent() == PatientEvent.EVENT_PATIENT_INFO) {
+				patientInfo(e.getData());
             }
         }
     }
