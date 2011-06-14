@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.patient.Patient;
-import model.patient.PatientData;
-import model.sql.config.SQLConfigException;
-
 import view.PatientPage;
 import view.SearchDialog;
 
@@ -21,9 +18,9 @@ import view.SearchDialog;
  */
 public class PatientPageController implements ActionListener {
 	
-	private Patient patient;
-    private PatientPage    frame;
-    private boolean       used;
+	private Patient		patient;
+    private PatientPage	frame;
+    //private boolean		used;
     
     public PatientPageController(PatientPage frame, Patient patient)
     {
@@ -41,7 +38,7 @@ public class PatientPageController implements ActionListener {
         	SearchDialog searchDialog = new SearchDialog(frame, true);
         	if (!searchDialog.canceled())
         	{
-				patient.getDataHash(); 		
+				patient.getBasicInfo(); 		
         	}
         }        
     }

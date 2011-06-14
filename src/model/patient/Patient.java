@@ -3,7 +3,6 @@ package model.patient;
 import java.util.HashMap;
 import java.util.Observable;
 
-import model.sql.MySql;
 import model.sql.config.SQLConfigException;
 
 /**
@@ -108,7 +107,7 @@ public class Patient extends Observable {
 		return this.email;
 	}
 	
-	public void getDataHash() {
+	public void getBasicInfo() {
 		
 		HashMap<String,String> dataHash = new HashMap<String, String>();
 		
@@ -119,10 +118,10 @@ public class Patient extends Observable {
 		dataHash.put("Postnr.", this.zip);
 		dataHash.put("By", this.city);
 		dataHash.put("Tlf.", this.phone);
-		dataHash.put("Email", this.email);		
+		dataHash.put("Email", this.email);
 	
 		setChanged();
-        	notifyObservers(new PatientEvent(PatientEvent.EVENT_PATIENT_INFO, dataHash));
+		notifyObservers(new PatientEvent(PatientEvent.EVENT_PATIENT_INFO, dataHash));
 	}
 
 }
