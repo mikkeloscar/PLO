@@ -124,7 +124,7 @@ public class Patient extends Observable {
 		System.out.println("test-patient");
 		
 		setChanged();
-        notifyObservers(new PatientEvent(PatientEvent.EVENT_PATIENT_INFO, dataHash));
+        	notifyObservers(new PatientEvent(PatientEvent.EVENT_PATIENT_INFO, dataHash));
 	}
 
 }
